@@ -6,16 +6,16 @@ class calc {
 
     private double N1,N2;
     private String[] arr = new String[5];
-    private char SYM;
-    private int size =0; // Current number of elements
+    private char SYM = '\0';
+    private int size = 0; // Current number of elements
     private final int capacity = 5; // Maximum size of the array
-
+    private double buffer;
+    private boolean operatorFlag;
 
     // Constructors:
 
     // Default Constructors
     calc(){
-
     }
 
     // Parameterized Constructor
@@ -59,6 +59,13 @@ class calc {
         return SYM;
     }
 
+    public boolean getOperatorFlag(){
+        return operatorFlag;
+    }
+
+    public double getBuffer(){
+        return buffer;
+    }
 
 
     // Setters
@@ -72,6 +79,14 @@ class calc {
 
     public void setSYM(char sYM) {
         SYM = sYM;
+    }
+
+    public void setOperatorFlag(boolean flag){
+        operatorFlag = flag;
+    }
+
+    public void setBuffer(double buffer){
+        this.buffer = buffer;
     }
 
 
@@ -90,6 +105,28 @@ class calc {
                 break;
             case '*':
                 result = this.N1* this.N2;
+                break;
+            default:
+                System.out.println("Invalid Operator Error!");
+                break;
+        }
+        return result;
+    }
+
+    public double calculate(double data1, double data2) {
+        double result=0;
+        switch (SYM) {
+            case '+':
+                result = data1 + data2;
+                break;
+            case '-':
+                result = data1 - data2;
+                break;
+            case '/':
+                result = data1/data2;
+                break;
+            case '*':
+                result = data1* data2;
                 break;
             default:
                 System.out.println("Invalid Operator Error!");
@@ -126,8 +163,10 @@ public class jacalc {
         JButton eight = new JButton("8");
         JButton nine = new JButton("9");
         JButton zero = new JButton("0");
+        JButton clear = new JButton("C");
 
 
+        // Setting bounds for the Operation Keys
         addition.setBounds(80, 130, 50, 30);
         addition.setFocusPainted(false);
         subtraction.setBounds(140, 130, 50, 30);
@@ -137,32 +176,36 @@ public class jacalc {
         division.setBounds(260, 130, 50, 30);
         division.setFocusPainted(false);
 
+        // Setting Bounds for the Numeric Keys
         seven.setBounds(60, 170, 80, 40);
         eight.setBounds(155, 170, 80, 40);
         nine.setBounds(250, 170, 80, 40);
-
         four.setBounds(60, 220, 80, 40);
         five.setBounds(155, 220, 80, 40);
         six.setBounds(250, 220, 80, 40);
-
-        one.setBounds(250, 270, 80, 40);
+        three.setBounds(250, 270, 80, 40);
         two.setBounds(155, 270, 80, 40);
-        three.setBounds(60, 270, 80, 40);
-
+        one.setBounds(60, 270, 80, 40);
         zero.setBounds(155, 320, 80, 40);
+        clear.setBounds(250, 320, 80, 40);
 
-        // 
+
+
+        // S
         JSeparator s = new JSeparator(); 
-        // set layout as vertical 
         s.setOrientation(SwingConstants.VERTICAL);
         s.setBounds(380,0,5,500); 
         
+
+
         // Test Fields
         JTextField f1,f3;
         f1 = new JTextField();
-        f3 = new JTextField();
-        f1.setBounds(60,50,100,30);
-        f3.setBounds(230,50,100,30);
+        // f3 = new JTextField();
+        f1.setBounds(60,30,280,50);
+        f1.setHorizontalAlignment(SwingConstants.RIGHT);
+        f1.setFont(new Font("Serif",Font.BOLD,30));
+        // f3.setBounds(230,50,100,30);
 
         // Result JLabel
         JLabel jl = new JLabel("Result: ");
@@ -183,27 +226,69 @@ public class jacalc {
         h4.setBounds(427,190,200,30);
         h5.setBounds(427,230,200,30);
 
+        clear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent d){
+                f1.setText("");
+                calcObj1.setN1(0);
+                calcObj1.setN2(0);
+                calcObj1.setSYM('\0');
+                jl.setText("Result: ");
+                calcObj1.setOperatorFlag(false);
+            }
+        });
 
         ActionListener arithmeticListener = new ActionListener() {
+            // String operationName;
             @Override
             public void actionPerformed(ActionEvent e){
-                String operationName = e.getActionCommand(); 
-                String f1data = f1.getText();
-                String f3data = f3.getText();
+                
+                double result = 0;
+                String operationName;
+                
+                try {
+                    if(calcObj1.getOperatorFlag() == false){
+                        String f1data = f1.getText();
+                        calcObj1.setN1(Double.parseDouble(f1data));
+                        operationName = e.getActionCommand(); 
+                        calcObj1.setSYM(operationName.charAt(0));
+                        f1.setText("");
+                        // calcObj1.addElement(calcObj1.getN1()+" "+ calcObj1.getSYM() +" " +calcObj1.getN2()+" = "+ Double.toString(result));
+                        System.out.println("if Running: "+calcObj1.getSYM()+","+calcObj1.getN1());
+                        calcObj1.setOperatorFlag(true);
+                        
+                    } else {
+                        String newF1Data = f1.getText();
+                        calcObj1.setN2(Double.parseDouble(newF1Data));
+                        result = calcObj1.calculate();
+                        calcObj1.setN1(result);
+                        operationName = e.getActionCommand(); 
+                        calcObj1.setSYM(operationName.charAt(0));
+                        jl.setText("Result: "+result);
+                        f1.setText("");
+                        System.out.println("Else Running: "+calcObj1.getSYM()+","+calcObj1.getN1());
+                        // f1.setText(Double.toString(result));
+                        // calcObj1.setOperatorFlag(false);
+                        // calcObj1.setSYM('\0');
+                    }
 
-                calcObj1.setN1(Double.parseDouble(f1data));
-                calcObj1.setSYM(operationName.charAt(0));
-                calcObj1.setN2(Double.parseDouble(f3data));
-                double result = calcObj1.calculate();
 
-                calcObj1.addElement(f1data+" "+operationName+" "+f3data+" = "+Double.toString(result));
+                } catch (Exception eFF) {
+                    // TODO: handle exception
+                    System.out.println("Operator: "+calcObj1.getSYM());
+                    operationName = e.getActionCommand(); 
+                    calcObj1.setSYM(operationName.charAt(0));
+                    System.out.println(eFF);
+                    System.out.println("Opeartor: "+calcObj1.getSYM());
+                }
 
-                jl.setText("Result: "+result);
+                double tempResult = calcObj1.calculate(calcObj1.getN1(), calcObj1.getN2());
+                calcObj1.addElement(calcObj1.getN1()+" "+ calcObj1.getSYM() +" " +calcObj1.getN2()+" = "+ tempResult);
                 h1.setText(calcObj1.getElement(0));
                 h2.setText(calcObj1.getElement(1));
                 h3.setText(calcObj1.getElement(2));
                 h4.setText(calcObj1.getElement(3));
-                h5.setText(calcObj1.getElement(4));            
+                h5.setText(calcObj1.getElement(4));
+          
             }
         };
 
@@ -211,7 +296,6 @@ public class jacalc {
             public void actionPerformed(ActionEvent f){
                 String number = f.getActionCommand();
                 f1.setText(f1.getText()+number);
-                // System.out.println(number);
             }
         };
 
@@ -242,11 +326,12 @@ public class jacalc {
         jf.add(division);
         
         // Adding Numeric Buttons
+        jf.setLayout(null);
         jf.add(one); jf.add(two); jf.add(three); jf.add(four); jf.add(five);
         jf.add(six); jf.add(seven); jf.add(eight); jf.add(nine); jf.add(zero);
-        jf.setLayout(null);
+        jf.add(clear);
         jf.add(f1);
-        jf.add(f3);
+        // jf.add(f3);
         jf.add(jl);
         jf.add(s);
         jf.add(hh);
