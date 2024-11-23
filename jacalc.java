@@ -191,7 +191,7 @@ public class jacalc {
 
 
 
-        // S
+        // Separator 
         JSeparator s = new JSeparator(); 
         s.setOrientation(SwingConstants.VERTICAL);
         s.setBounds(380,0,5,500); 
@@ -199,13 +199,11 @@ public class jacalc {
 
 
         // Test Fields
-        JTextField f1,f3;
+        JTextField f1;
         f1 = new JTextField();
-        // f3 = new JTextField();
         f1.setBounds(60,30,280,50);
         f1.setHorizontalAlignment(SwingConstants.RIGHT);
         f1.setFont(new Font("Serif",Font.BOLD,30));
-        // f3.setBounds(230,50,100,30);
 
         // Result JLabel
         JLabel jl = new JLabel("Result: ");
@@ -252,7 +250,6 @@ public class jacalc {
                         operationName = e.getActionCommand(); 
                         calcObj1.setSYM(operationName.charAt(0));
                         f1.setText("");
-                        // calcObj1.addElement(calcObj1.getN1()+" "+ calcObj1.getSYM() +" " +calcObj1.getN2()+" = "+ Double.toString(result));
                         System.out.println("if Running: "+calcObj1.getSYM()+","+calcObj1.getN1());
                         calcObj1.setOperatorFlag(true);
                         
@@ -331,7 +328,6 @@ public class jacalc {
         jf.add(six); jf.add(seven); jf.add(eight); jf.add(nine); jf.add(zero);
         jf.add(clear);
         jf.add(f1);
-        // jf.add(f3);
         jf.add(jl);
         jf.add(s);
         jf.add(hh);
