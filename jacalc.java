@@ -346,3 +346,4 @@ public class jacalc {
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }    
 }
+// the end
