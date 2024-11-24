@@ -176,10 +176,11 @@ public class jacalc {
 
 
         // Setting bounds for the Operation Keys
-        addition.setBounds(263, 170, 80, 40);
-        subtraction.setBounds(263, 220, 80, 40);
-        multiplication.setBounds(263, 270, 80, 40);
-        division.setBounds(263, 320, 80, 40);
+        addition.setBounds(263, 120, 80, 40);
+        subtraction.setBounds(263, 170, 80, 40);
+        multiplication.setBounds(263, 220, 80, 40);
+        division.setBounds(263, 270, 80, 40);
+        equal.setBounds(263, 320, 80, 40);
         
 
         addition.setBackground(Color.GRAY);
@@ -194,7 +195,10 @@ public class jacalc {
         division.setBackground(Color.GRAY);
         division.setForeground(Color.WHITE);
         division.setFont(new Font("Ariel",Font.PLAIN,20));
+
         equal.setFont(new Font("Ariel",Font.PLAIN,20));
+        equal.setBackground(new Color(25, 117, 197));
+        equal.setForeground(Color.WHITE);
         // backSpace.setFont(new Font("Ariel",Font.PLAIN,15));
 
 
@@ -202,7 +206,7 @@ public class jacalc {
         clearEvent.setBounds(5, 120, 80, 40);
         clear.setBounds(91, 120, 80, 40);
         backSpace.setBounds(177, 120, 80, 40);
-        equal.setBounds(263, 120, 80, 40);
+        
 
         seven.setBounds(5, 170, 80, 40);
         eight.setBounds(91, 170, 80, 40);
