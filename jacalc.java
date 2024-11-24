@@ -212,9 +212,9 @@ public class jacalc {
         five.setBounds(91, 220, 80, 40);
         six.setBounds(177, 220, 80, 40);
 
-        three.setBounds(5, 270, 80, 40);
+        three.setBounds(177, 270, 80, 40);
         two.setBounds(91, 270, 80, 40);
-        one.setBounds(177, 270, 80, 40);
+        one.setBounds(5, 270, 80, 40);
         
         doubleZero.setBounds(5, 320, 80, 40);
         zero.setBounds(91, 320, 80, 40);
@@ -297,7 +297,7 @@ public class jacalc {
         f1.setFont(new Font("Serif",Font.BOLD,30));
 
         // Result JLabel
-        JLabel jl = new JLabel(" ");
+        JLabel jl = new JLabel("0");
         jl.setBounds(0,59,348,50);
         jl.setHorizontalAlignment(SwingConstants.RIGHT);
         Border etchedBorder = BorderFactory.createEtchedBorder();
@@ -329,7 +329,7 @@ public class jacalc {
                 calcObj1.setN1(0);
                 calcObj1.setN2(0);
                 calcObj1.setSYM('\0');
-                jl.setText(" ");
+                jl.setText("0");
                 calcObj1.setOperatorFlag(false);
             }
         });
