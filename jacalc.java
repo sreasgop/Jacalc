@@ -150,7 +150,7 @@ public class jacalc {
         
         JFrame jf = new JFrame();
 
-        ImageIcon appIcon = new ImageIcon("calculator.jpeg");
+        ImageIcon appIcon = new ImageIcon("calculator.png");
 
         // Buttons
         JButton addition = new JButton("+");
