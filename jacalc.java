@@ -1,7 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
+// import javax.swing.border.EtchedBorder;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -344,8 +344,7 @@ public class jacalc {
         dot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent dot){
                 try {
-                    int len = f1.getText().length();
-                    if(f1.getText().charAt(len - 1) == '.' || f1.getText().contains(".") == true) {
+                    if(f1.getText().contains(".") == true) {
 
                     } else {
                         String number = dot.getActionCommand();
@@ -356,6 +355,17 @@ public class jacalc {
                 }
             }
         });
+
+        backSpace.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent backSpace){
+                String currentValue = f1.getText();
+                if(!currentValue.isEmpty()){
+                    String newValue = currentValue.substring(0, currentValue.length()-1);
+                    f1.setText(newValue);
+                }
+            }
+        });
+
 
         ActionListener arithmeticListener = new ActionListener() {
             // String operationName;
@@ -372,7 +382,7 @@ public class jacalc {
                         operationName = e.getActionCommand(); 
                         calcObj1.setSYM(operationName.charAt(0));
                         f1.setText("");
-                        System.out.println("if Running: "+calcObj1.getSYM()+","+calcObj1.getN1());
+                        // System.out.println("if Running: "+calcObj1.getSYM()+","+calcObj1.getN1());
                         calcObj1.setOperatorFlag(true);
                         
                     } else {
@@ -384,16 +394,16 @@ public class jacalc {
                         calcObj1.setSYM(operationName.charAt(0));
                         jl.setText(" "+result);
                         f1.setText("");
-                        System.out.println("Else Running: "+calcObj1.getSYM()+","+calcObj1.getN1());
+                        // System.out.println("Else Running: "+calcObj1.getSYM()+","+calcObj1.getN1());
                     }
 
 
                 } catch (Exception eFF) {
-                    System.out.println("Operator: "+calcObj1.getSYM());
+                    // System.out.println("Operator: "+calcObj1.getSYM());
                     operationName = e.getActionCommand(); 
                     calcObj1.setSYM(operationName.charAt(0));
                     System.out.println(eFF);
-                    System.out.println("Opeartor: "+calcObj1.getSYM());
+                    // System.out.println("Opeartor: "+calcObj1.getSYM());
                 }
 
                 // double tempResult = calcObj1.calculate();
