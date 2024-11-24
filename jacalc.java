@@ -344,6 +344,17 @@ public class jacalc {
             }
         });
         
+        equal.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent eq){
+                String newF1Data = f1.getText();
+                calcObj1.setN2(Double.parseDouble(newF1Data));
+                double result = calcObj1.calculate();
+                calcObj1.setN1(result);
+                jl.setText(" "+result);
+                f1.setText("");
+            }
+        });
+
         ActionListener arithmeticListener = new ActionListener() {
             // String operationName;
             @Override
