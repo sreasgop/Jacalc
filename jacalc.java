@@ -1,4 +1,8 @@
-import javax.swing.*; 
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -164,50 +168,145 @@ public class jacalc {
         JButton nine = new JButton("9");
         JButton zero = new JButton("0");
         JButton clear = new JButton("C");
+        JButton doubleZero = new JButton("00");
+        JButton clearEvent = new JButton("CE");
+        JButton equal = new JButton("=");
+        JButton backSpace = new JButton("⬅️");
+        JButton dot = new JButton(".");
 
 
         // Setting bounds for the Operation Keys
-        addition.setBounds(80, 130, 50, 30);
-        addition.setFocusPainted(false);
-        subtraction.setBounds(140, 130, 50, 30);
-        subtraction.setFocusPainted(false);
-        multiplication.setBounds(200, 130, 50, 30);
-        multiplication.setFocusPainted(false);
-        division.setBounds(260, 130, 50, 30);
-        division.setFocusPainted(false);
+        addition.setBounds(263, 170, 80, 40);
+        subtraction.setBounds(263, 220, 80, 40);
+        multiplication.setBounds(263, 270, 80, 40);
+        division.setBounds(263, 320, 80, 40);
+        
+
+        addition.setBackground(Color.GRAY);
+        addition.setForeground(Color.WHITE);
+        addition.setFont(new Font("Ariel",Font.PLAIN,20));
+        subtraction.setBackground(Color.GRAY);
+        subtraction.setFont(new Font("Ariel",Font.PLAIN,20));
+        subtraction.setForeground(Color.WHITE);
+        multiplication.setBackground(Color.GRAY);
+        multiplication.setFont(new Font("Ariel",Font.PLAIN,20));
+        multiplication.setForeground(Color.WHITE);
+        division.setBackground(Color.GRAY);
+        division.setForeground(Color.WHITE);
+        division.setFont(new Font("Ariel",Font.PLAIN,20));
+        equal.setFont(new Font("Ariel",Font.PLAIN,20));
+        // backSpace.setFont(new Font("Ariel",Font.PLAIN,15));
+
 
         // Setting Bounds for the Numeric Keys
-        seven.setBounds(60, 170, 80, 40);
-        eight.setBounds(155, 170, 80, 40);
-        nine.setBounds(250, 170, 80, 40);
-        four.setBounds(60, 220, 80, 40);
-        five.setBounds(155, 220, 80, 40);
-        six.setBounds(250, 220, 80, 40);
-        three.setBounds(250, 270, 80, 40);
-        two.setBounds(155, 270, 80, 40);
-        one.setBounds(60, 270, 80, 40);
-        zero.setBounds(155, 320, 80, 40);
-        clear.setBounds(250, 320, 80, 40);
+        clearEvent.setBounds(5, 120, 80, 40);
+        clear.setBounds(91, 120, 80, 40);
+        backSpace.setBounds(177, 120, 80, 40);
+        equal.setBounds(263, 120, 80, 40);
 
+        seven.setBounds(5, 170, 80, 40);
+        eight.setBounds(91, 170, 80, 40);
+        nine.setBounds(177, 170, 80, 40);
+
+        four.setBounds(5, 220, 80, 40);
+        five.setBounds(91, 220, 80, 40);
+        six.setBounds(177, 220, 80, 40);
+
+        three.setBounds(5, 270, 80, 40);
+        two.setBounds(91, 270, 80, 40);
+        one.setBounds(177, 270, 80, 40);
+        
+        doubleZero.setBounds(5, 320, 80, 40);
+        zero.setBounds(91, 320, 80, 40);
+        dot.setBounds(177, 320, 80, 40);
+        
+
+        seven.setFont(new Font("Ariel", Font.PLAIN, 20));
+        seven.setBackground(Color.WHITE);
+        seven.setBorder(null);
+
+        eight.setFont(new Font("Ariel", Font.PLAIN, 20));
+        eight.setBackground(Color.WHITE);
+        eight.setBorder(null);
+
+        nine.setFont(new Font("Ariel", Font.PLAIN, 20));
+        nine.setBackground(Color.WHITE);
+        nine.setBorder(null);
+
+        four.setFont(new Font("Ariel", Font.PLAIN, 20));
+        four.setBackground(Color.WHITE);
+        four.setBorder(null);
+
+        five.setFont(new Font("Ariel", Font.PLAIN, 20));
+        five.setBackground(Color.WHITE);
+        five.setBorder(null);
+
+        six.setFont(new Font("Ariel", Font.PLAIN, 20));
+        six.setBackground(Color.WHITE);
+        six.setBorder(null);
+ 
+        three.setFont(new Font("Ariel", Font.PLAIN, 20));
+        three.setBackground(Color.WHITE);
+        three.setBorder(null);
+
+        two.setFont(new Font("Ariel", Font.PLAIN, 20));
+        two.setBackground(Color.WHITE);
+        two.setBorder(null);
+
+        one.setFont(new Font("Ariel", Font.PLAIN, 20));
+        one.setBackground(Color.WHITE);
+        one.setBorder(null);
+
+        zero.setFont(new Font("Ariel", Font.PLAIN, 20));
+        zero.setBackground(Color.WHITE);
+        zero.setBorder(null);
+
+        doubleZero.setFont(new Font("Ariel", Font.PLAIN, 20));
+        doubleZero.setBackground(Color.WHITE);
+        doubleZero.setBorder(null);
+
+        dot.setFont(new Font("Ariel", Font.PLAIN, 30));
+        dot.setBackground(Color.WHITE);
+        dot.setBorder(null);
+
+        
+        clear.setFont(new Font("Ariel", Font.PLAIN, 20));
+        // clear.setBackground(Color.WHITE);
+        // clear.setBorder(null);
+
+        clearEvent.setFont(new Font("Ariel", Font.PLAIN, 20));
+        // clearEvent.setBackground(Color.WHITE);
+        // clearEvent.setBorder(null);
 
 
         // Separator 
         JSeparator s = new JSeparator(); 
         s.setOrientation(SwingConstants.VERTICAL);
-        s.setBounds(380,0,5,500); 
-        
-
+        s.setBounds(346,0,2,500); 
+        // s.setBackground(Color.GRAY);
 
         // Test Fields
         JTextField f1;
         f1 = new JTextField();
-        f1.setBounds(60,30,280,50);
+        f1.setBounds(0,0,348,60);
         f1.setHorizontalAlignment(SwingConstants.RIGHT);
+        f1.setBorder(BorderFactory.createCompoundBorder(
+                f1.getBorder(),                     // Keep existing border
+                new EmptyBorder(0, 0, 0, 10)                // Add padding: top, left, bottom, right
+        ));
         f1.setFont(new Font("Serif",Font.BOLD,30));
 
         // Result JLabel
-        JLabel jl = new JLabel("Result: ");
-        jl.setBounds(170,90,300,30);
+        JLabel jl = new JLabel(" ");
+        jl.setBounds(0,59,348,50);
+        jl.setHorizontalAlignment(SwingConstants.RIGHT);
+        Border etchedBorder = BorderFactory.createEtchedBorder();
+        // Border paddingBorder = BorderFactory.createEmptyBorder(10, 20, 10, 10);
+        jl.setBorder(BorderFactory.createCompoundBorder(
+            etchedBorder, 
+            new EmptyBorder(10, 20, 10, 10)
+        ));
+        jl.setFont(new Font("Ariel",Font.BOLD,40));
 
         // History Jlabels
         JLabel h1,h2,h3,h4,h5,hh;
@@ -230,11 +329,17 @@ public class jacalc {
                 calcObj1.setN1(0);
                 calcObj1.setN2(0);
                 calcObj1.setSYM('\0');
-                jl.setText("Result: ");
+                jl.setText(" ");
                 calcObj1.setOperatorFlag(false);
             }
         });
 
+        clearEvent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent CE){
+                f1.setText("");
+            }
+        });
+        
         ActionListener arithmeticListener = new ActionListener() {
             // String operationName;
             @Override
@@ -260,17 +365,13 @@ public class jacalc {
                         calcObj1.setN1(result);
                         operationName = e.getActionCommand(); 
                         calcObj1.setSYM(operationName.charAt(0));
-                        jl.setText("Result: "+result);
+                        jl.setText(" "+result);
                         f1.setText("");
                         System.out.println("Else Running: "+calcObj1.getSYM()+","+calcObj1.getN1());
-                        // f1.setText(Double.toString(result));
-                        // calcObj1.setOperatorFlag(false);
-                        // calcObj1.setSYM('\0');
                     }
 
 
                 } catch (Exception eFF) {
-                    // TODO: handle exception
                     System.out.println("Operator: "+calcObj1.getSYM());
                     operationName = e.getActionCommand(); 
                     calcObj1.setSYM(operationName.charAt(0));
@@ -278,7 +379,7 @@ public class jacalc {
                     System.out.println("Opeartor: "+calcObj1.getSYM());
                 }
 
-                double tempResult = calcObj1.calculate(calcObj1.getN1(), calcObj1.getN2());
+                double tempResult = calcObj1.calculate();
                 calcObj1.addElement(calcObj1.getN1()+" "+ calcObj1.getSYM() +" " +calcObj1.getN2()+" = "+ tempResult);
                 h1.setText(calcObj1.getElement(0));
                 h2.setText(calcObj1.getElement(1));
@@ -311,11 +412,13 @@ public class jacalc {
         two.addActionListener(numericListener);
         three.addActionListener(numericListener);
         zero.addActionListener(numericListener);
+        doubleZero.addActionListener(numericListener);
+        dot.addActionListener(numericListener);
 
 
 
         jf.setTitle("Jacalc");
-        jf.setSize(550, 500);
+        jf.setSize(550, 420);
         
         jf.add(addition);
         jf.add(subtraction);
@@ -336,10 +439,28 @@ public class jacalc {
         jf.add(h3);
         jf.add(h4); 
         jf.add(h5);
+        jf.add(doubleZero);
+        jf.add(clearEvent);
+        jf.add(backSpace);
+        jf.add(equal);
+        jf.add(dot);
         jf.setIconImage(appIcon.getImage());
         jf.setResizable(false);
+        disableFocusPainted(jf);
         jf.setVisible(true);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }    
+
+    }
+    
+    // Method to disable focus painted on all JButtons
+    public static void disableFocusPainted(Container container) {
+        for (Component component : container.getComponents()) {
+            if (component instanceof JButton) {
+                ((JButton) component).setFocusPainted(false);
+            }
+            if (component instanceof Container) {
+                disableFocusPainted((Container) component); // Recursively check child containers
+            }
+        }
+    }
 }
-// the end
