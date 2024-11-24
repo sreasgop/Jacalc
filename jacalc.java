@@ -117,28 +117,6 @@ class calc {
         return result;
     }
 
-    public double calculate(double data1, double data2) {
-        double result=0;
-        switch (SYM) {
-            case '+':
-                result = data1 + data2;
-                break;
-            case '-':
-                result = data1 - data2;
-                break;
-            case '/':
-                result = data1/data2;
-                break;
-            case '*':
-                result = data1* data2;
-                break;
-            default:
-                System.out.println("Invalid Operator Error!");
-                break;
-        }
-        return result;
-    }
-
 }
 
 public class jacalc {
@@ -284,10 +262,11 @@ public class jacalc {
 
 
         // Separator 
-        JSeparator s = new JSeparator(); 
-        s.setOrientation(SwingConstants.VERTICAL);
-        s.setBounds(346,0,2,500); 
+        // JSeparator s = new JSeparator(); 
+        // s.setOrientation(SwingConstants.VERTICAL);
+        // s.setBounds(346,0,2,500); 
         // s.setBackground(Color.GRAY);
+
 
         // Test Fields
         JTextField f1;
@@ -299,6 +278,7 @@ public class jacalc {
                 new EmptyBorder(0, 0, 0, 10)                // Add padding: top, left, bottom, right
         ));
         f1.setFont(new Font("Serif",Font.BOLD,30));
+
 
         // Result JLabel
         JLabel jl = new JLabel("0");
@@ -312,20 +292,21 @@ public class jacalc {
         ));
         jl.setFont(new Font("Ariel",Font.BOLD,40));
 
+
         // History Jlabels
-        JLabel h1,h2,h3,h4,h5,hh;
-        h1 = new JLabel(calcObj1.getElement(0));
-        h2 = new JLabel(calcObj1.getElement(1));
-        h3 = new JLabel(calcObj1.getElement(2));
-        h4 = new JLabel(calcObj1.getElement(3));
-        h5 = new JLabel(calcObj1.getElement(4));
-        hh = new JLabel("History");
-        hh.setBounds(435,30,200,30);
-        h1.setBounds(427,70,200,30);
-        h2.setBounds(427,110,200,30);
-        h3.setBounds(427,150,200,30);
-        h4.setBounds(427,190,200,30);
-        h5.setBounds(427,230,200,30);
+        // JLabel h1,h2,h3,h4,h5,hh;
+        // h1 = new JLabel(calcObj1.getElement(0));
+        // h2 = new JLabel(calcObj1.getElement(1));
+        // h3 = new JLabel(calcObj1.getElement(2));
+        // h4 = new JLabel(calcObj1.getElement(3));
+        // h5 = new JLabel(calcObj1.getElement(4));
+        // hh = new JLabel("History");
+        // hh.setBounds(435,30,200,30);
+        // h1.setBounds(427,70,200,30);
+        // h2.setBounds(427,110,200,30);
+        // h3.setBounds(427,150,200,30);
+        // h4.setBounds(427,190,200,30);
+        // h5.setBounds(427,230,200,30);
 
         clear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent d){
@@ -346,12 +327,33 @@ public class jacalc {
         
         equal.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent eq){
-                String newF1Data = f1.getText();
-                calcObj1.setN2(Double.parseDouble(newF1Data));
-                double result = calcObj1.calculate();
-                calcObj1.setN1(result);
-                jl.setText(" "+result);
-                f1.setText("");
+                try {
+                    String newF1Data = f1.getText();
+                    calcObj1.setN2(Double.parseDouble(newF1Data));
+                    double result = calcObj1.calculate();
+                    calcObj1.setN1(result);
+                    jl.setText(" "+result);
+                    f1.setText("");
+                } catch (Exception e) {
+                    System.out.print(e);
+                }
+
+            }
+        });
+
+        dot.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent dot){
+                try {
+                    int len = f1.getText().length();
+                    if(f1.getText().charAt(len - 1) == '.' || f1.getText().contains(".") == true) {
+
+                    } else {
+                        String number = dot.getActionCommand();
+                        f1.setText(f1.getText()+number);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             }
         });
 
@@ -394,13 +396,13 @@ public class jacalc {
                     System.out.println("Opeartor: "+calcObj1.getSYM());
                 }
 
-                double tempResult = calcObj1.calculate();
-                calcObj1.addElement(calcObj1.getN1()+" "+ calcObj1.getSYM() +" " +calcObj1.getN2()+" = "+ tempResult);
-                h1.setText(calcObj1.getElement(0));
-                h2.setText(calcObj1.getElement(1));
-                h3.setText(calcObj1.getElement(2));
-                h4.setText(calcObj1.getElement(3));
-                h5.setText(calcObj1.getElement(4));
+                // double tempResult = calcObj1.calculate();
+                // calcObj1.addElement(calcObj1.getN1()+" "+ calcObj1.getSYM() +" " +calcObj1.getN2()+" = "+ tempResult);
+                // h1.setText(calcObj1.getElement(0));
+                // h2.setText(calcObj1.getElement(1));
+                // h3.setText(calcObj1.getElement(2));
+                // h4.setText(calcObj1.getElement(3));
+                // h5.setText(calcObj1.getElement(4));
           
             }
         };
@@ -428,12 +430,12 @@ public class jacalc {
         three.addActionListener(numericListener);
         zero.addActionListener(numericListener);
         doubleZero.addActionListener(numericListener);
-        dot.addActionListener(numericListener);
+        // dot.addActionListener(numericListener);
 
 
 
         jf.setTitle("Jacalc");
-        jf.setSize(550, 420);
+        jf.setSize(363, 420);
         
         jf.add(addition);
         jf.add(subtraction);
@@ -447,13 +449,13 @@ public class jacalc {
         jf.add(clear);
         jf.add(f1);
         jf.add(jl);
-        jf.add(s);
-        jf.add(hh);
-        jf.add(h1);
-        jf.add(h2);
-        jf.add(h3);
-        jf.add(h4); 
-        jf.add(h5);
+        // jf.add(s);
+        // jf.add(hh);
+        // jf.add(h1);
+        // jf.add(h2);
+        // jf.add(h3);
+        // jf.add(h4); 
+        // jf.add(h5);
         jf.add(doubleZero);
         jf.add(clearEvent);
         jf.add(backSpace);
