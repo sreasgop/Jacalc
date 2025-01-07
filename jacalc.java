@@ -2,22 +2,23 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 // import javax.swing.border.EtchedBorder;
-
 import java.awt.*;
 import java.awt.event.*;
+
+
 
 class calc {
 
     private double N1,N2;
-    private String[] arr = new String[5];
     private char SYM = '\0';
-    private int size = 0; // Current number of elements
-    private final int capacity = 5; // Maximum size of the array
-    private double buffer;
     private boolean operatorFlag;
+    // private String[] arr = new String[5];
+    // private int size = 0; // Current number of elements
+    // private final int capacity = 5; // Maximum size of the array
+
+
 
     // Constructors:
-
     // Default Constructors
     calc(){
     }
@@ -28,29 +29,25 @@ class calc {
         N2 = n2;
         SYM = sym;
     }
+    
 
-    
-    
+
     // Function to add a new history with shifting logic
-    public void addElement(String newElement) {
-        if (size < capacity) {
-            arr[size] = newElement;
-            size++;
-        } else {
-            for (int i = 0; i < capacity - 1; i++) {
-                arr[i] = arr[i + 1];
-            }
-            arr[capacity - 1] = newElement;
-        }
-    }
+    // public void addElement(String newElement) {
+    //     if (size < capacity) {
+    //         arr[size] = newElement;
+    //         size++;
+    //     } else {
+    //         for (int i = 0; i < capacity - 1; i++) {
+    //             arr[i] = arr[i + 1];
+    //         }
+    //         arr[capacity - 1] = newElement;
+    //     }
+    // }
 
-    
 
-    // Getters
-    public String getElement(int index) {
-        return this.arr[index];
-    }
 
+    // Getters:
     public double getN1() {
         return N1;
     }
@@ -67,12 +64,9 @@ class calc {
         return operatorFlag;
     }
 
-    public double getBuffer(){
-        return buffer;
-    }
 
 
-    // Setters
+    // Setters:
     public void setN1(double n1) {
         N1 = n1;
     }
@@ -89,12 +83,26 @@ class calc {
         operatorFlag = flag;
     }
 
-    public void setBuffer(double buffer){
-        this.buffer = buffer;
+
+
+    // Functions to apple Styling to Buttons:
+    // Method to apply common styles to the group of Numeric buttons: 
+    public static void styleNumericButton(JButton NumButton) {
+        NumButton.setFont(new Font("Ariel", Font.PLAIN, 20));
+        NumButton.setBackground(Color.WHITE);
+        NumButton.setBorder(null);
+    }
+
+    // Methods to apply common styles to the group of Opeartion buttons: 
+    public static void styleOperationButton(JButton OperationButton) {
+        OperationButton.setBackground(Color.GRAY);
+        OperationButton.setForeground(Color.WHITE);
+        OperationButton.setFont(new Font("Ariel",Font.PLAIN,20));
     }
 
 
 
+    // Main method to perform the necessary calculations: 
     public double calculate() {
         double result=0;
         switch (SYM) {
@@ -119,18 +127,20 @@ class calc {
 
 }
 
-public class jacalc {
 
-    static int counter = 0;
-    public static void main(String[] args) {
+
+public class jacalc {
+        public static void main(String[] args) {
     
         calc calcObj1 = new calc();
         
         JFrame jf = new JFrame();
 
-        ImageIcon appIcon = new ImageIcon("calculator.png");
+        ImageIcon appIcon = new ImageIcon("calculator.png");        
 
-        // Buttons
+
+
+        // CREATING BUTTONS: 
         JButton addition = new JButton("+");
         JButton subtraction = new JButton("-");
         JButton multiplication = new JButton("*");
@@ -153,105 +163,64 @@ public class jacalc {
         JButton dot = new JButton(".");
 
 
-        // Setting bounds for the Operation Keys
+
+        // BOUNDS OF BUTTONS: 
+        // Setting Bounds for the Opeartor Buttons
         addition.setBounds(263, 120, 80, 40);
         subtraction.setBounds(263, 170, 80, 40);
         multiplication.setBounds(263, 220, 80, 40);
         division.setBounds(263, 270, 80, 40);
         equal.setBounds(263, 320, 80, 40);
-        
 
-        addition.setBackground(Color.GRAY);
-        addition.setForeground(Color.WHITE);
-        addition.setFont(new Font("Ariel",Font.PLAIN,20));
-        subtraction.setBackground(Color.GRAY);
-        subtraction.setFont(new Font("Ariel",Font.PLAIN,20));
-        subtraction.setForeground(Color.WHITE);
-        multiplication.setBackground(Color.GRAY);
-        multiplication.setFont(new Font("Ariel",Font.PLAIN,20));
-        multiplication.setForeground(Color.WHITE);
-        division.setBackground(Color.GRAY);
-        division.setForeground(Color.WHITE);
-        division.setFont(new Font("Ariel",Font.PLAIN,20));
-
-        equal.setFont(new Font("Ariel",Font.PLAIN,20));
-        equal.setBackground(new Color(25, 117, 197));
-        equal.setForeground(Color.WHITE);
-        // backSpace.setFont(new Font("Ariel",Font.PLAIN,15));
-
-
-        // Setting Bounds for the Numeric Keys
+        // Setting Bounds for the Other Buttons
         clearEvent.setBounds(5, 120, 80, 40);
         clear.setBounds(91, 120, 80, 40);
         backSpace.setBounds(177, 120, 80, 40);
+        // backSpace.setFont(new Font("Ariel",Font.PLAIN,15));
         
-
+        // Setting Bounds for the Numeric Buttons:
         seven.setBounds(5, 170, 80, 40);
         eight.setBounds(91, 170, 80, 40);
         nine.setBounds(177, 170, 80, 40);
-
         four.setBounds(5, 220, 80, 40);
         five.setBounds(91, 220, 80, 40);
         six.setBounds(177, 220, 80, 40);
-
         three.setBounds(177, 270, 80, 40);
         two.setBounds(91, 270, 80, 40);
         one.setBounds(5, 270, 80, 40);
-        
         doubleZero.setBounds(5, 320, 80, 40);
         zero.setBounds(91, 320, 80, 40);
         dot.setBounds(177, 320, 80, 40);
-        
 
-        seven.setFont(new Font("Ariel", Font.PLAIN, 20));
-        seven.setBackground(Color.WHITE);
-        seven.setBorder(null);
 
-        eight.setFont(new Font("Ariel", Font.PLAIN, 20));
-        eight.setBackground(Color.WHITE);
-        eight.setBorder(null);
 
-        nine.setFont(new Font("Ariel", Font.PLAIN, 20));
-        nine.setBackground(Color.WHITE);
-        nine.setBorder(null);
+        // STYLING OF BUTTONS:
+        // Styling Opeartion Buttons:
+        calc.styleOperationButton(addition);
+        calc.styleOperationButton(subtraction);
+        calc.styleOperationButton(multiplication);
+        calc.styleOperationButton(division);
+        calc.styleOperationButton(equal);
 
-        four.setFont(new Font("Ariel", Font.PLAIN, 20));
-        four.setBackground(Color.WHITE);
-        four.setBorder(null);
+        // Styling Numeric Buttons:
+        calc.styleNumericButton(seven);
+        calc.styleNumericButton(eight);
+        calc.styleNumericButton(nine);
+        calc.styleNumericButton(four);
+        calc.styleNumericButton(five);
+        calc.styleNumericButton(six);
+        calc.styleNumericButton(three);
+        calc.styleNumericButton(two);
+        calc.styleNumericButton(one);
+        calc.styleNumericButton(zero);
+        calc.styleNumericButton(doubleZero);
+        calc.styleNumericButton(dot);
 
-        five.setFont(new Font("Ariel", Font.PLAIN, 20));
-        five.setBackground(Color.WHITE);
-        five.setBorder(null);
-
-        six.setFont(new Font("Ariel", Font.PLAIN, 20));
-        six.setBackground(Color.WHITE);
-        six.setBorder(null);
- 
-        three.setFont(new Font("Ariel", Font.PLAIN, 20));
-        three.setBackground(Color.WHITE);
-        three.setBorder(null);
-
-        two.setFont(new Font("Ariel", Font.PLAIN, 20));
-        two.setBackground(Color.WHITE);
-        two.setBorder(null);
-
-        one.setFont(new Font("Ariel", Font.PLAIN, 20));
-        one.setBackground(Color.WHITE);
-        one.setBorder(null);
-
-        zero.setFont(new Font("Ariel", Font.PLAIN, 20));
-        zero.setBackground(Color.WHITE);
-        zero.setBorder(null);
-
-        doubleZero.setFont(new Font("Ariel", Font.PLAIN, 20));
-        doubleZero.setBackground(Color.WHITE);
-        doubleZero.setBorder(null);
-
+        // Styling Other Buttons: (That require unique styling)
         dot.setFont(new Font("Ariel", Font.PLAIN, 30));
         dot.setBackground(Color.WHITE);
         dot.setBorder(null);
 
-        
         clear.setFont(new Font("Ariel", Font.PLAIN, 20));
         // clear.setBackground(Color.WHITE);
         // clear.setBorder(null);
@@ -261,6 +230,7 @@ public class jacalc {
         // clearEvent.setBorder(null);
 
 
+
         // Separator 
         // JSeparator s = new JSeparator(); 
         // s.setOrientation(SwingConstants.VERTICAL);
@@ -268,7 +238,8 @@ public class jacalc {
         // s.setBackground(Color.GRAY);
 
 
-        // Test Fields
+        // TEXTFIELD: 
+        // Test Field where numbers are written and taken from:
         JTextField f1;
         f1 = new JTextField();
         f1.setBounds(0,0,348,60);
@@ -280,7 +251,8 @@ public class jacalc {
         f1.setFont(new Font("Serif",Font.BOLD,30));
 
 
-        // Result JLabel
+        // JLABEL:
+        // Result JLabel where result are displayed after each operation:
         JLabel jl = new JLabel("0");
         jl.setBounds(0,59,348,50);
         jl.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -293,80 +265,9 @@ public class jacalc {
         jl.setFont(new Font("Ariel",Font.BOLD,40));
 
 
-        // History Jlabels
-        // JLabel h1,h2,h3,h4,h5,hh;
-        // h1 = new JLabel(calcObj1.getElement(0));
-        // h2 = new JLabel(calcObj1.getElement(1));
-        // h3 = new JLabel(calcObj1.getElement(2));
-        // h4 = new JLabel(calcObj1.getElement(3));
-        // h5 = new JLabel(calcObj1.getElement(4));
-        // hh = new JLabel("History");
-        // hh.setBounds(435,30,200,30);
-        // h1.setBounds(427,70,200,30);
-        // h2.setBounds(427,110,200,30);
-        // h3.setBounds(427,150,200,30);
-        // h4.setBounds(427,190,200,30);
-        // h5.setBounds(427,230,200,30);
 
-        clear.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent d){
-                f1.setText("");
-                calcObj1.setN1(0);
-                calcObj1.setN2(0);
-                calcObj1.setSYM('\0');
-                jl.setText("0");
-                calcObj1.setOperatorFlag(false);
-            }
-        });
-
-        clearEvent.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent CE){
-                f1.setText("");
-            }
-        });
-        
-        equal.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent eq){
-                try {
-                    String newF1Data = f1.getText();
-                    calcObj1.setN2(Double.parseDouble(newF1Data));
-                    double result = calcObj1.calculate();
-                    calcObj1.setN1(result);
-                    jl.setText(" "+result);
-                    f1.setText("");
-                } catch (Exception e) {
-                    System.out.print(e);
-                }
-
-            }
-        });
-
-        dot.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent dot){
-                try {
-                    if(f1.getText().contains(".") == true) {
-
-                    } else {
-                        String number = dot.getActionCommand();
-                        f1.setText(f1.getText()+number);
-                    }
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-            }
-        });
-
-        backSpace.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent backSpace){
-                String currentValue = f1.getText();
-                if(!currentValue.isEmpty()){
-                    String newValue = currentValue.substring(0, currentValue.length()-1);
-                    f1.setText(newValue);
-                }
-            }
-        });
-
-
+        // ACTION LISTENERS: 
+        // Arithmetic Action Listeners for all the Operation Buttons: 
         ActionListener arithmeticListener = new ActionListener() {
             // String operationName;
             @Override
@@ -405,18 +306,11 @@ public class jacalc {
                     System.out.println(eFF);
                     // System.out.println("Opeartor: "+calcObj1.getSYM());
                 }
-
-                // double tempResult = calcObj1.calculate();
-                // calcObj1.addElement(calcObj1.getN1()+" "+ calcObj1.getSYM() +" " +calcObj1.getN2()+" = "+ tempResult);
-                // h1.setText(calcObj1.getElement(0));
-                // h2.setText(calcObj1.getElement(1));
-                // h3.setText(calcObj1.getElement(2));
-                // h4.setText(calcObj1.getElement(3));
-                // h5.setText(calcObj1.getElement(4));
           
             }
         };
 
+        // Numeric Action Listener for all the Numeric Buttons: 
         ActionListener numericListener = new ActionListener() {
             public void actionPerformed(ActionEvent f){
                 String number = f.getActionCommand();
@@ -424,6 +318,75 @@ public class jacalc {
             }
         };
 
+        // Action Listeners for all the Buttons with Unique Actions: 
+        clear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent d){
+                f1.setText("");
+                calcObj1.setN1(0);
+                calcObj1.setN2(0);
+                calcObj1.setSYM('\0');
+                jl.setText("0");
+                calcObj1.setOperatorFlag(false);
+            }
+        });
+
+        clearEvent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent CE){
+                f1.setText("");
+            }
+        });
+        
+        equal.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent eq){
+                try {
+                    double result = 0;
+                    if(calcObj1.getOperatorFlag() == false){
+                        result = Double.parseDouble(f1.getText()); 
+                        jl.setText(" "+result);
+                        f1.setText("");
+                    } else {
+                        String newF1Data = f1.getText();
+                        calcObj1.setN2(Double.parseDouble(newF1Data));
+                        result = calcObj1.calculate();
+                        calcObj1.setN1(result);
+                        jl.setText(" "+result);
+                        f1.setText("");
+                    }
+                } catch (Exception e) {
+                    System.out.print(e);
+                }
+
+            }
+        });
+
+        dot.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent dot){
+                try {
+                    if(f1.getText().contains(".") == true) {
+
+                    } else {
+                        String number = dot.getActionCommand();
+                        f1.setText(f1.getText()+number);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        });
+
+        backSpace.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent backSpace){
+                String currentValue = f1.getText();
+                if(!currentValue.isEmpty()){
+                    String newValue = currentValue.substring(0, currentValue.length()-1);
+                    f1.setText(newValue);
+                }
+            }
+        });
+
+
+        // ADDING ACTION LISTENERS TO GENERIC BUTTONS: 
+        // Adding Acction Listeners to the Numeric Buttons and the Operation Buttons: 
         addition.addActionListener(arithmeticListener);
         subtraction.addActionListener(arithmeticListener);
         multiplication.addActionListener(arithmeticListener);
@@ -440,42 +403,37 @@ public class jacalc {
         three.addActionListener(numericListener);
         zero.addActionListener(numericListener);
         doubleZero.addActionListener(numericListener);
-        // dot.addActionListener(numericListener);
 
 
 
-        jf.setTitle("Jacalc");
-        jf.setSize(363, 420);
-        
+        // ADDINT ELEMENTS TO JFRAME:
+        // Adding Opeartion Buttons to the Jframe:
         jf.add(addition);
         jf.add(subtraction);
         jf.add(multiplication);
         jf.add(division);
         
-        // Adding Numeric Buttons
+        // Adding Numeric Buttons to the Jframe:
         jf.setLayout(null);
         jf.add(one); jf.add(two); jf.add(three); jf.add(four); jf.add(five);
         jf.add(six); jf.add(seven); jf.add(eight); jf.add(nine); jf.add(zero);
         jf.add(clear);
         jf.add(f1);
         jf.add(jl);
-        // jf.add(s);
-        // jf.add(hh);
-        // jf.add(h1);
-        // jf.add(h2);
-        // jf.add(h3);
-        // jf.add(h4); 
-        // jf.add(h5);
         jf.add(doubleZero);
         jf.add(clearEvent);
         jf.add(backSpace);
         jf.add(equal);
         jf.add(dot);
-        jf.setIconImage(appIcon.getImage());
+        
+        // Basic layout formatting and setting for the JFrame
+        jf.setTitle("Jacalc");
+        jf.setSize(363, 420);
         jf.setResizable(false);
+        jf.setIconImage(appIcon.getImage());
         disableFocusPainted(jf);
-        jf.setVisible(true);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setVisible(true);
 
     }
     
